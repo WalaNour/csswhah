@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { HttpService } from "../http.service";
 import { LocalService } from "../local.service";
 import { Router } from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-notification",
@@ -10,7 +11,7 @@ import { Router } from "@angular/router";
 })
 export class NotificationComponent implements OnInit {
   application: any;
-  compName : any ;
+  compName: any;
   constructor(
     private _http: HttpService,
     private local: LocalService,
@@ -19,24 +20,31 @@ export class NotificationComponent implements OnInit {
 
   ngOnInit(): void {
     var obj = { owner: this.local.companyInfo.owner };
-    this.compName = this.local.message
+    this.compName = this.local.message;
     this._http.httpGetApplications(obj).subscribe((data) => {
       this.application = data;
       console.log(data);
     });
   }
   accept(id, name) {
-    var obj = { 
-      'id' : id ,
-      'name' : name ,
-      'compName' : this.local.message
+    var obj = {
+      id: id,
+      name: name,
+      compName: this.local.message,
     };
-
+    var object = { id };
     this._http.httpacceptApp(obj).subscribe((data) => {
-      console.log(data);
-      this.ngOnInit();
+      this._http.httpdeleteApplication(object).subscribe((data) => {
+        this.ngOnInit();
+      });
     });
-
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "the application is saved and an email is sended",
+      showConfirmButton: false,
+      timer: 3000,
+    });
   }
   reject(id) {
     var obj = { id };

@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { HttpService } from "../http.service";
 import { LocalService } from "../local.service";
 import { Router } from "@angular/router";
-
 @Component({
   selector: "app-admin-add-coach",
   templateUrl: "./admin-add-coach.component.html",
@@ -14,9 +13,7 @@ export class AdminAddCoachComponent implements OnInit {
     private local: LocalService,
     private router: Router
   ) {}
-
   ngOnInit(): void {}
-
   addCoach(fullName, image, email, diplome, experience, about, number) {
     var obj = { fullName, image, email, diplome, experience, about, number };
     this._http.addCoach(obj).subscribe((data) => {
@@ -40,7 +37,6 @@ export class AdminAddCoachComponent implements OnInit {
   member() {
     this.router.navigateByUrl("/admin/update");
   }
-
   post() {
     this.router.navigateByUrl("/admin/delete");
   }
@@ -53,7 +49,6 @@ export class AdminAddCoachComponent implements OnInit {
   adTree() {
     this.router.navigateByUrl("/tree/admin");
   }
-
   coach() {
     this.router.navigateByUrl("/admin/addCoach");
   }

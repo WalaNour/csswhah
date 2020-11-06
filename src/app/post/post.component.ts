@@ -20,7 +20,7 @@ export class PostComponent implements OnInit {
     // get one post
 
     this.post = this.local.onePost;
-    console.log(this.local.user);
+    console.log("this is the element", this.local.onePost);
     var obj = { postId: this.local.onePost.id };
     this._http.getcomment(obj).subscribe((data) => {
       console.log(data);
@@ -29,10 +29,10 @@ export class PostComponent implements OnInit {
   }
   comment(comment) {
     var obj = {
-      postId: this.local.onePost.id,
-      username: this.local.user.name,
+      postId: this.local.onePost?.id,
+      username: this.local.user?.name,
       postsText: comment,
-      imgUrl: this.local.user.image,
+      imgUrl: this.local.user?.image,
     };
     this._http.addcomment(obj).subscribe((data) => {
       this.ngOnInit();

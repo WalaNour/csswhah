@@ -2,18 +2,19 @@ import { Component, OnInit } from "@angular/core";
 import { HttpService } from "../http.service";
 import { Router } from "@angular/router";
 import { LocalService } from "../local.service";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 @Component({
   selector: "app-admin-trees",
   templateUrl: "./admin-trees.component.html",
   styleUrls: ["./admin-trees.component.css"],
 })
 export class AdminTreesComponent implements OnInit {
+  validatingForm: FormGroup;
   constructor(
     private _http: HttpService,
     private router: Router,
     private local: LocalService
   ) {}
-
   trees: any;
   paths: any;
   relations: any = {};
@@ -21,12 +22,10 @@ export class AdminTreesComponent implements OnInit {
     this._http.getTrees().subscribe((data) => {
       this.trees = data;
     });
-
     this._http.getPaths().subscribe((data) => {
       this.paths = data;
     });
   }
-
   treesInfo(job, field) {
     var obj = { job, field };
     this._http.addTree(obj).subscribe((data) => {
@@ -34,7 +33,6 @@ export class AdminTreesComponent implements OnInit {
       this.ngOnInit();
     });
   }
-
   pathsInfo(
     name,
     stepOne,
@@ -44,19 +42,7 @@ export class AdminTreesComponent implements OnInit {
     stepThree,
     descThree,
     stepFour,
-    descFour,
-    stepFive,
-    descFive,
-    stepSix,
-    descSix,
-    stepSeven,
-    descSeven,
-    stepEight,
-    descEight,
-    stepNine,
-    descNine,
-    stepTen,
-    descTen
+    descFour
   ) {
     var path = {
       name,
@@ -68,32 +54,18 @@ export class AdminTreesComponent implements OnInit {
       descThree,
       stepFour,
       descFour,
-      stepFive,
-      descFive,
-      stepSix,
-      descSix,
-      stepSeven,
-      descSeven,
-      stepEight,
-      descEight,
-      stepNine,
-      descNine,
-      stepTen,
-      descTen,
     };
     this._http.addPath(path).subscribe((data) => {
       alert("succes");
       this.ngOnInit();
     });
   }
-
   joinInfo() {
     this._http.addrelation(this.relations).subscribe((data) => {
       alert("succes");
       this.ngOnInit();
     });
   }
-
   addp(name) {
     this.relations.pathName = name;
   }
@@ -107,7 +79,6 @@ export class AdminTreesComponent implements OnInit {
   }
   goback() {
     this.local.redirected = false;
-
     this.router.navigateByUrl("/admin/login");
   }
   // go to ban users interface
@@ -122,7 +93,6 @@ export class AdminTreesComponent implements OnInit {
   member() {
     this.router.navigateByUrl("/admin/update");
   }
-
   post() {
     this.router.navigateByUrl("/admin/delete");
   }
@@ -135,7 +105,6 @@ export class AdminTreesComponent implements OnInit {
   adTree() {
     this.router.navigateByUrl("/tree/admin");
   }
-
   coach() {
     this.router.navigateByUrl("/admin/addCoach");
   }

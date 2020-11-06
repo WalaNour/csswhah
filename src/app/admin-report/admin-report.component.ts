@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { HttpService } from "../http.service";
 import { Router } from "@angular/router";
 import { LocalService } from "../local.service";
-
 @Component({
   selector: "app-admin-report",
   templateUrl: "./admin-report.component.html",
@@ -14,29 +13,23 @@ export class AdminReportComponent implements OnInit {
     private router: Router,
     private local: LocalService
   ) {}
-
   reports: any;
-
   ngOnInit(): void {
     this._http.getUsersReport().subscribe((data) => {
       this.reports = data;
       console.log(this.reports);
     });
   }
-
   deleteReport(id) {
     this._http.deleteReports({ id }).subscribe((data) => {});
     this.ngOnInit();
   }
-
   deleteAll() {
     this._http.deleteAllReports().subscribe((data) => {});
     this.ngOnInit();
   }
-
   goback() {
     this.local.redirected = false;
-
     this.router.navigateByUrl("/admin/login");
   }
   // go to ban users interface
@@ -51,7 +44,6 @@ export class AdminReportComponent implements OnInit {
   member() {
     this.router.navigateByUrl("/admin/update");
   }
-
   post() {
     this.router.navigateByUrl("/admin/delete");
   }
@@ -64,7 +56,6 @@ export class AdminReportComponent implements OnInit {
   adTree() {
     this.router.navigateByUrl("/tree/admin");
   }
-
   coach() {
     this.router.navigateByUrl("/admin/addCoach");
   }

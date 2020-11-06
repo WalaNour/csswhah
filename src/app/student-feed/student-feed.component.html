@@ -34,7 +34,7 @@
               >
             </li>
             <li class="nav-item">
-              <a (click)="takeMeToReports()" class="nav-link">send Report</a>
+              <a (click)="takeMeToReports()" class="nav-link">Feedback</a>
             </li>
 
             <li class="nav-item">
@@ -57,6 +57,37 @@
         </div>
       </nav>
 
+      <div id="id01" class="modal">
+        <form
+          class="modal-content animate"
+          action="/action_page.php"
+          method="post"
+        >
+          <div class="imgcontainer">
+            <span
+              onclick="document.getElementById('id01').style.display='none'"
+              class="close"
+              title="Close Modal"
+              >&times;</span
+            >
+          </div>
+
+          <div class="container">
+            <app-reports-to-admin></app-reports-to-admin>
+          </div>
+
+          <div class="container" style="background-color: #f1f1f1;">
+            <button
+              type="button"
+              onclick="document.getElementById('id01').style.display='none'"
+              class="cancelbtn"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+
       <div class="row gutters-sm">
         <div class="col-md-4 mb-3">
           <div class="card">
@@ -64,14 +95,14 @@
               <img class="cover" src="../../assets/cover.jpg" />
               <div class="d-flex flex-column align-items-center text-center">
                 <img
-                  src="https://d1r27dnp1fh4g5.cloudfront.net/img/pages/fe-thumb/screenshot-37-_755916f95aa55f743d04042daeda0979.jpg"
+                  src="{{ this.local.user?.image }}"
                   alt="Admin"
                   class="avatar"
                   width="200"
                 />
                 <div class="personal-data">
                   <h4>
-                    xsqxqsx
+                    {{ this.local.user?.name }}
                   </h4>
 
                   <button class="btn btn-outline-primary">
@@ -101,7 +132,8 @@
                   >
                     <path
                       d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
-                    ></path></svg>Facebook
+                    ></path></svg
+                  >Facebook
                 </h6>
                 <span class="text-secondary">dzxxqs</span>
               </li>
@@ -121,20 +153,19 @@
               <h5 class="card-title">{{ this.element?.title }}</h5>
               <p class="card-text">{{ this.element?.description }}</p>
               <div class="btns">
-
                 <a
-                class="btn btn-primary"
-                (click)="
+                  class="btn btn-primary"
+                  (click)="
                 apply({
                   title: this.element.title,
                   owner: this.element.owner,
                   studentName: this.local.message
                 })
                 "
-                >apply</a
+                  >apply</a
                 >
                 <a class="btn btn-primary" (click)="report(this.element)"
-                >Report</a
+                  >Report</a
                 >
               </div>
             </div>

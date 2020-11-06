@@ -47,6 +47,7 @@ import { CoachListComponent } from "./coach-list/coach-list.component";
 import { AuthGuard } from "./auth.guard";
 import { AboutUsComponent } from "./about-us/about-us.component";
 import { ChoiceComponent } from "./choice/choice.component";
+import { ResumeComponent } from "./resume/resume.component";
 
 const routes: Routes = [
   { path: "register/student", component: VerficationComponent },
@@ -245,6 +246,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: "aboutUs", component: AboutUsComponent },
+  { path: "resume", component: ResumeComponent },
 ];
 
 @NgModule({

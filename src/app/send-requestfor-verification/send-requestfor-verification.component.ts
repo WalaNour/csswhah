@@ -1,11 +1,12 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
-import { HttpService } from '../http.service';
-import { Router } from '@angular/router';
-import { LocalService } from '../local.service';
+import { Component, OnInit, ɵConsole } from "@angular/core";
+import { HttpService } from "../http.service";
+import { Router } from "@angular/router";
+import { LocalService } from "../local.service";
+import Swal from "sweetalert2";
 @Component({
-  selector: 'app-send-requestfor-verification',
-  templateUrl: './send-requestfor-verification.component.html',
-  styleUrls: ['./send-requestfor-verification.component.css'],
+  selector: "app-send-requestfor-verification",
+  templateUrl: "./send-requestfor-verification.component.html",
+  styleUrls: ["./send-requestfor-verification.component.css"],
 })
 export class SendRequestforVerificationComponent implements OnInit {
   constructor(
@@ -22,7 +23,14 @@ export class SendRequestforVerificationComponent implements OnInit {
     this._http
       .httpSendVerificationRequest({ username: this.name })
       .subscribe((data) => {
-        this.router.navigateByUrl('/wait');
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your request is sended",
+          showConfirmButton: false,
+          timer: 3500,
+        });
+        this.router.navigateByUrl("/wait");
       });
   }
 }

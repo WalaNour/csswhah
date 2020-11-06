@@ -16,6 +16,7 @@ export class StudentProfilComponent implements OnInit {
   ) {}
   userData: any;
   ngOnInit(): void {
+    document.getElementById("id01").style.display = "none";
     const userToken = localStorage.getItem("token");
     var obj = {
       token: userToken,
@@ -23,7 +24,8 @@ export class StudentProfilComponent implements OnInit {
     // get all data for user
     this._http.userProfil(obj).subscribe((res) => {
       this.userData = res[0];
-      console.log("this is data" ,res[0]);
+      this.local.resume = res[0];
+      console.log("this is data", res[0]);
       this.local.user = {
         image: this.userData.profilePic,
         name: this.userData.firstname,
@@ -44,7 +46,7 @@ export class StudentProfilComponent implements OnInit {
     this.router.navigateByUrl("/studentProfile");
   }
   takeMeToReports() {
-    this.router.navigateByUrl("/sendReport");
+    document.getElementById("id01").style.display = "block";
   }
   feed() {
     this.router.navigateByUrl("/feed/student");

@@ -31,7 +31,6 @@ export class AdminPostsComponent implements OnInit {
   }
   goback() {
     this.local.redirected = false;
-
     this.router.navigateByUrl("/admin/login");
   }
   // go to ban users interface
@@ -46,7 +45,6 @@ export class AdminPostsComponent implements OnInit {
   member() {
     this.router.navigateByUrl("/admin/update");
   }
-
   post() {
     this.router.navigateByUrl("/admin/delete");
   }
@@ -59,7 +57,6 @@ export class AdminPostsComponent implements OnInit {
   adTree() {
     this.router.navigateByUrl("/tree/admin");
   }
-
   coach() {
     this.router.navigateByUrl("/admin/addCoach");
   }

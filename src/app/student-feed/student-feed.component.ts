@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { HttpService } from "../http.service";
 import { LocalService } from "../local.service";
 import { Router } from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-student-feed",
@@ -13,12 +14,14 @@ export class StudentFeedComponent implements OnInit {
 
   constructor(
     private _http: HttpService,
-    private local: LocalService,
+    public local: LocalService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     // get all the posts
+    document.getElementById("id01").style.display = "none";
+
     document.getElementById("hello").style.display = "none";
     document.getElementById("report").style.display = "none";
     this._http.httpGetPosts().subscribe((data) => {
@@ -32,9 +35,13 @@ export class StudentFeedComponent implements OnInit {
   apply(obj) {
     // apply for post
     this._http.applystudent(obj).subscribe((data) => {
-      alert(
-        "Dear Student , your application is saved , we'll conatct you as soon as possible"
-      );
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your application has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       this.router.navigateByUrl("/studentProfile");
     });
   }
@@ -57,7 +64,7 @@ export class StudentFeedComponent implements OnInit {
     this.router.navigateByUrl("/studentProfile");
   }
   takeMeToReports() {
-    this.router.navigateByUrl("/sendReport");
+    document.getElementById("id01").style.display = "block";
   }
   feed() {
     this.router.navigateByUrl("/feed/student");
