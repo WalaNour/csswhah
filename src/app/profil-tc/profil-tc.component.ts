@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../http.service';
-import { Router } from '@angular/router';
-import { LocalService } from '../local.service';
+import { Component, OnInit } from "@angular/core";
+import { HttpService } from "../http.service";
+import { Router } from "@angular/router";
+import { LocalService } from "../local.service";
 
 @Component({
-  selector: 'app-profil-tc',
-  templateUrl: './profil-tc.component.html',
-  styleUrls: ['./profil-tc.component.css'],
+  selector: "app-profil-tc",
+  templateUrl: "./profil-tc.component.html",
+  styleUrls: ["./profil-tc.component.css"],
 })
 export class ProfilTcComponent implements OnInit {
   constructor(
@@ -18,7 +18,7 @@ export class ProfilTcComponent implements OnInit {
   userData: any;
 
   ngOnInit(): void {
-    const userToken = localStorage.getItem('token');
+    const userToken = localStorage.getItem("token");
     var obj = {
       token: userToken,
     };
@@ -35,20 +35,20 @@ export class ProfilTcComponent implements OnInit {
   }
   // redirect to edit profile
   updateProfil() {
-    this.router.navigateByUrl('/editTc');
+    this.router.navigateByUrl("/editTc");
   }
   // search profile student
   searchProfil(profilName) {
     this._http.findProfil({ profilName }).subscribe((res) => {
       this.local.otherProfile = res[0];
-      this.router.navigateByUrl('/resultSearch');
+      this.router.navigateByUrl("/resultSearch");
     });
   }
   // redirect to own posts component
   toPost() {
-    this.router.navigateByUrl('/post/center');
+    this.router.navigateByUrl("/post/center");
   }
   posts() {
-    this.router.navigateByUrl('own/posts');
+    this.router.navigateByUrl("own/posts");
   }
 }

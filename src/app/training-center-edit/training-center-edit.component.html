@@ -1,79 +1,157 @@
-<div class="all">
-    <div class="wrapper">
-      <div class="title">edit traning center info</div>
-      <div class="form">
-        <div class="inputfield">
-          <label>email</label>
-          <input #email type="text" name="email" />
-        </div>
-        <div class="inputfield">
-          <label>Owner</label>
-          <input #owner type="text" name="owner" />
-        </div>
-  
-        <!-- <div class="inputfield">
-          <label>Field</label>
-          <input #fieldval type="text"  name="field" />
-        </div> -->
-<!--   
-        <div class="inputfield">
-          <label>Field</label>
-          <div class="custom_select">
-            <select #field name="field">
-              <option selected="none"></option>
-              <option value="technical">technical</option>
-              <option value="science">science</option>
-              <option value="sells">sells</option>
-            </select>
+<div class="mid">
+  <label for="Search Profil"></label>
+  <input type="text" class="in" name="search" #search />
+  <button class="big" (click)="searchProfil(search.value)">search</button>
+</div>
+<div>
+  <div class="container emp-profile">
+    <form method="post">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="profile-img">
+            <img src="{{this.userData?.logo}}" />
+            <div class="file btn btn-lg btn-primary">
+              Change Photo
+              <input type="file" name="file" />
+            </div>
           </div>
-        </div> -->
-  
-        <div class="inputfield">
-          <label>Number Of student graduated </label>
+        </div>
+        <div class="col-md-6">
+          <div class="profile-head">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  id="home-tab"
+                  aria-controls="home"
+                  aria-selected="true"
+                  >About</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-2">
           <input
-            #numberOfStudents
-            type="number"
-            name="numberOfStudents"
+            type="submit"
+            class="profile-edit-btn"
+            name="btnAddMore"
+            value="Edit Profile"
+            (click)="updateProfil()"
           />
-        </div>
-        <div class="inputfield">
-          <label>About</label>
-          <textarea #about type="textarea" name="about"></textarea>
-        </div>
-        <div class="inputfield">
-          <label>Location</label>
-          <input #location type="text"  name="location" />
-        </div>
-        <div class="inputfield">
-          <label>WebSite</label>
-          <input #website type="text"  name="website" />
-        </div>
-        <div class="inputfield">
-            <label>traning options</label>
-            <input #traningOption type="text"  name="traningOption" />
-          </div>
-          <div class="inputfield">
-            <label>WebSite</label>
-            <input #website type="text"  name="website" />
-          </div>
-        <!-- <div class="inputfield">
-          <label>image</label>
           <input
-            #logo
-            type="file"
-            
-            name="logo"
-            (change)="imgUpload($event)"
+            type="submit"
+            value="Add Post"
+            class="profile-edit-btn"
+            (click)="toPost()"
           />
-        </div> -->
-  
-        <div class="inputfield">
-          <button
-          (click)="takedata([email.value, owner.value, traningOption.value, numberOfStudents.value, location.value, website.value, about.value], [email.name, owner.name, traningOption.name, numberOfStudents.name, location.name, website.name, about.name], this.tcToken )"
-          >
-            submit
-          </button>
         </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="profile-work">
+            <a href="{{this.userData?.website}}">Website Link : </a>
+            <!-- <span>{{this.userData?.website}}</span> -->
+            <input
+              type="text"
+              value="{{this.userData?.website}}"
+              #website
+              name="website"
+            />
+            <br />
+
+            <p>SKILLS</p>
+            <input
+              type="text"
+              value="{{this.userData?.skills}}"
+              #skills
+              name="skills"
+            />
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="tab-content profile-tab" id="myTabContent">
+            <div
+              class="tab-pane fade show active"
+              id="home"
+              role="tabpanel"
+              aria-labelledby="home-tab"
+            >
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Owner</label>
+                </div>
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    value="{{this.userData?.owner}}"
+                    #owner
+                    name="owner"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Number of student graduated </label>
+                </div>
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    value="{{this.userData?.numberOfStudents}}"
+                    #numberOfStudents
+                    name="numberOfStudents"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Email</label>
+                </div>
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    value="{{this.userData?.email}}"
+                    #email
+                    name="email"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>name</label>
+                </div>
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    value="{{this.userData?.name}}"
+                    #name
+                    name="name"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Address</label>
+                </div>
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    value="{{this.userData?.location}}"
+                    #location
+                    name="location"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="profile"
+              role="tabpanel"
+              aria-labelledby="profile-tab"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
+</div>

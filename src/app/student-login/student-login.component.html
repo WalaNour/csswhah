@@ -4,7 +4,8 @@
   </div>
   <div
     style="
-      margin-left: 43%;
+      width: 30%;
+      margin-left: 54%;
       height: 700px;
       margin-right: 6%;
       text-align: center;
@@ -35,22 +36,23 @@
       >
         Login
       </button>
-            <div class="col">
-        <a  (click)="loginWithFacebook()" class="fb btn">
+      <div class="col">
+        <a (click)="loginWithFacebook()" class="fb btn">
           <i class="fa fa-facebook fa-fw"></i> Login with Facebook
-         </a>
-        <a (click)="loginWithGoogle()" class="google btn"><i class="fa fa-google fa-fw">
-          </i> Login with Google+
+        </a>
+        <a (click)="loginWithGoogle()" class="google btn"
+          ><i class="fa fa-google fa-fw"> </i> Login with Google+
         </a>
       </div>
     </form>
     <h3>Or</h3>
     <p>
       Dont You Have An Account ?
-      <a (click)="sign()" style="color: orange;">Sign Up</a>
+      <a (click)="sign()" style="color: orange; cursor: pointer;">Sign Up</a>
     </p>
     <div id="id01" class="modal">
       <form
+        style="width: 50%;"
         class="modal-content animate"
         action="/action_page.php"
         method="post"
@@ -94,7 +96,7 @@
           />
           <button
             type="submit"
-            class="btn btn-outline-secondary"
+            class="btn btn-success"
             (click)=" collect( namee.value,email.value,secretinfo.value,passworde.value) "
           >
             Sign Up
@@ -111,5 +113,4 @@
       };
     </script>
   </div>
-
 </div>

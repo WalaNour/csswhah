@@ -27,7 +27,7 @@ button:hover {
 .cancelbtn {
   width: auto;
   padding: 10px 18px;
-  background-color: #F44336;
+  background-color: #f44336;
 }
 /* Center the image and position the close button */
 .imgcontainer {
@@ -62,7 +62,7 @@ span.psw {
 }
 /* Modal Content/Box */
 .modal-content {
-  background-color: #FEFEFE;
+  background-color: #fefefe;
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */

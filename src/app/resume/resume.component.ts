@@ -17,11 +17,10 @@ export class ResumeComponent implements OnInit {
   education: any;
   experience: any;
   skills: any;
-  constructor(private local: LocalService, private _http: HttpService) {}
+  constructor(public local: LocalService, private _http: HttpService) {}
   ngOnInit(): void {
     this.experience = this.local.resume[3];
     this.education = this.local.resume[1];
-    this.skills = this.local.resume[5].skills;
     console.log(this.skills);
     this.dates1 = this.local.resume[0];
     this.dates2 = this.local.resume[2];

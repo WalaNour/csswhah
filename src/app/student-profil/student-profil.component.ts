@@ -24,7 +24,6 @@ export class StudentProfilComponent implements OnInit {
     // get all data for user
     this._http.userProfil(obj).subscribe((res) => {
       this.userData = res[0];
-      this.local.resume = res[0];
       console.log("this is data", res[0]);
       this.local.user = {
         image: this.userData.profilePic,
@@ -59,5 +58,8 @@ export class StudentProfilComponent implements OnInit {
   }
   choice() {
     this.router.navigateByUrl("/users/choice");
+  }
+  changedirection() {
+    this.router.navigateByUrl("/addData");
   }
 }

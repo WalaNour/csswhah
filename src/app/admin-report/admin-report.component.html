@@ -41,21 +41,28 @@
     <div class="container">
       <nav
         class="navbar navbar-àexpand-lg navbar-light bg-light"
-        style="margin-left: 10%; margin-right: -110%;"
+        style="margin-left: 10%; margin-right: -63%;"
       >
         <a>Feedbacks</a>
+        <button
+          class="btn btn-danger"
+          (click)="deleteAll()"
+          style="margin-left: 20%;"
+        >
+          delete All
+        </button>
       </nav>
     </div>
     <div class="line">
-      <div class="all" style="margin-left: 350px;">
-        <table class="table">
+      <div class="all" style="margin-left: 231px;">
+        <table class="table" style="width: 147%;">
           <thead class="thead-dark">
             <tr>
               <th scope="col">user name</th>
               <th scope="col">type of user</th>
               <th scope="col">message</th>
               <th scope="col">
-                delete <button (click)="deleteAll()">delete All</button>
+                delete
               </th>
             </tr>
           </thead>
@@ -77,15 +84,15 @@
           </tbody>
         </table>
       </div>
-      <div class="all" style="margin-left: 350px;">
-        <table class="table">
+      <div class="all" style="margin-left: 231px;">
+        <table class="table" style="width: 147%;">
           <thead class="thead-dark">
             <tr>
               <th scope="col">user name</th>
               <th scope="col">type of user</th>
               <th scope="col">message</th>
               <th scope="col">
-                delete <button (click)="deleteAll()">delete All</button>
+                delete
               </th>
             </tr>
           </thead>

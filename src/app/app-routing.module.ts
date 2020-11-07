@@ -48,7 +48,7 @@ import { AuthGuard } from "./auth.guard";
 import { AboutUsComponent } from "./about-us/about-us.component";
 import { ChoiceComponent } from "./choice/choice.component";
 import { ResumeComponent } from "./resume/resume.component";
-
+import { AddDataComponent } from "./add-data/add-data.component";
 const routes: Routes = [
   { path: "register/student", component: VerficationComponent },
   {
@@ -148,7 +148,7 @@ const routes: Routes = [
     component: PostCenterComponent,
     canActivate: [AuthGuard],
   },
-  { path: "post", component: PostComponent, canActivate: [AuthGuard] },
+  { path: "post", component: PostComponent },
   {
     path: "admin/delete",
     component: AdminPostsComponent,
@@ -247,8 +247,8 @@ const routes: Routes = [
   },
   { path: "aboutUs", component: AboutUsComponent },
   { path: "resume", component: ResumeComponent },
+  { path: "addData", component: AddDataComponent },
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],

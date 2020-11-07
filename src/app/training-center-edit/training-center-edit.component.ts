@@ -14,13 +14,41 @@ export class TrainingCenterEditComponent implements OnInit {
     private router: Router,
     private local: LocalService
   ) {}
-  tcToken: String = "";
+
+  userData: any;
+
   ngOnInit(): void {
-    this.tcToken = localStorage.getItem("token");
+    const userToken = localStorage.getItem("token");
+    var obj = {
+      token: userToken,
+    };
+    // get the data of the training center
+    this._http.tcProfil(obj).subscribe((res) => {
+      this.userData = res[0];
+      this.local.tsInfo = {
+        owner: this.userData.owner,
+        email: this.userData.email,
+        id: this.userData.id,
+        postsNumber: this.userData.numberOfPostsAvaible,
+      };
+    });
   }
-  // update profile training center
-  takedata([], [], token) {
-    this._http.updateTCData(arguments).subscribe((data) => {});
-    this.router.navigateByUrl("center/profile");
+  // redirect to edit profile
+  updateProfil() {
+    this.router.navigateByUrl("/editTc");
+  }
+  // search profile student
+  searchProfil(profilName) {
+    this._http.findProfil({ profilName }).subscribe((res) => {
+      this.local.otherProfile = res[0];
+      this.router.navigateByUrl("/resultSearch");
+    });
+  }
+  // redirect to own posts component
+  toPost() {
+    this.router.navigateByUrl("/post/center");
+  }
+  posts() {
+    this.router.navigateByUrl("own/posts");
   }
 }
